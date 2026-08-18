@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rishi's Restro | Restaurant</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-indigo-950 text-white">
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="bg-white text-gray-800 shadow-lg sticky top-0 z-50">
+
+        <div class="max-w-7xl mx-auto px-5 py-4
+                    flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-3">
+
+                <div class="w-10 h-10 bg-indigo-700
+                            rounded-full flex items-center
+                            justify-center text-xl">
+                    🍴
+                </div>
+
+                <div>
+                    <h1 class="text-xl font-bold text-indigo-800">
+                        Rishi's Restro
+                    </h1>
+
+                    <p class="text-xs text-gray-500">
+                        Taste the Happiness
+                    </p>
+                </div>
+
+            </a>
+
+
+            <!-- Navigation -->
+            <div class="hidden md:flex items-center gap-8 font-medium">
+
+                <a href="#home"
+                   class="hover:text-indigo-700 transition">
+                    Home
+                </a>
+
+                <a href="#menu"
+                   class="hover:text-indigo-700 transition">
+                    Menu
+                </a>
+
+                <a href="#about"
+                   class="hover:text-indigo-700 transition">
+                    About Us
+                </a>
+
+                <a href="#orders"
+                   class="hover:text-indigo-700 transition">
+                    My Orders
+                </a>
+
+            </div>
+
+
+            <!-- Cart -->
+            <a href="#cart"
+               class="bg-indigo-700 text-white
+                      px-4 py-2 rounded-lg
+                      hover:bg-indigo-800 transition">
+
+                🛒 Cart
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section id="home"
+             class="max-w-7xl mx-auto px-5 py-16">
+
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+
+            <!-- Hero Content -->
+
+            <div>
+
+                <p class="text-indigo-300 font-semibold mb-3">
+                    WELCOME TO SPICE HOUSE
+                </p>
+
+                <h2 class="text-4xl md:text-6xl
+                           font-bold leading-tight">
+
+                    Delicious Food,
+
+                    <span class="text-indigo-300">
+                        Happy Moments.
+                    </span>
+
+                </h2>
+
+                <p class="text-indigo-100 text-lg
+                          mt-6 leading-relaxed">
+
+                    Enjoy freshly prepared meals made
+                    with quality ingredients. Discover
+                    delicious food prepared specially
+                    for you.
+
+                </p>
+
+                <a href="#menu"
+                   class="inline-block mt-8
+                          bg-white text-indigo-900
+                          font-semibold px-7 py-3
+                          rounded-lg
+                          hover:bg-indigo-100
+                          transition">
+
+                    Explore Menu
+
+                </a>
+
+            </div>
+
+
+            <!-- Hero Image -->
+
+            <div>
+
+                <img
+                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=80"
+                    alt="Restaurant Food"
+                    class="w-full aspect-video
+                           object-cover rounded-2xl
+                           shadow-2xl">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CATEGORY SECTION ================= -->
+
+    <section class="bg-indigo-900 py-8">
+
+        <div class="max-w-7xl mx-auto px-5">
+
+            <div class="flex flex-wrap
+                        justify-center gap-3">
+
+                <a href="#menu"
+                   class="bg-white text-indigo-900
+                          px-5 py-2 rounded-full
+                          font-medium">
+
+                    All
+
+                </a>
+
+                <a href="#pizza"
+                   class="bg-indigo-800
+                          px-5 py-2 rounded-full
+                          hover:bg-white
+                          hover:text-indigo-900
+                          transition">
+
+                    🍕 Pizza
+
+                </a>
+
+                <a href="#burger"
+                   class="bg-indigo-800
+                          px-5 py-2 rounded-full
+                          hover:bg-white
+                          hover:text-indigo-900
+                          transition">
+
+                    🍔 Burger
+
+                </a>
+
+                <a href="#indian"
+                   class="bg-indigo-800
+                          px-5 py-2 rounded-full
+                          hover:bg-white
+                          hover:text-indigo-900
+                          transition">
+
+                    🍛 Indian
+
+                </a>
+
+                <a href="#dessert"
+                   class="bg-indigo-800
+                          px-5 py-2 rounded-full
+                          hover:bg-white
+                          hover:text-indigo-900
+                          transition">
+
+                    🍰 Dessert
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MENU SECTION ================= -->
+
+    <section id="menu"
+             class="max-w-7xl mx-auto px-5 py-16">
+
+        <!-- Menu Heading -->
+
+        <div class="text-center mb-12">
+
+            <p class="text-indigo-300 font-semibold">
+                YE HAI APNA MENU!
+            </p>
+
+            <h2 class="text-4xl font-bold mt-2">
+                BHARI BHARI DISHES@
+            </h2>
+
+            <p class="text-indigo-200 mt-3">
+                Freshly prepared dishes loved by our customers
+            </p>
+
+        </div>
+
+
+        <!-- ================= GRID ================= -->
+
+        <div class="grid grid-cols-1
+                    md:grid-cols-2
+                    lg:grid-cols-3
+                    gap-8">
+
+
+            <!-- ================= CARD 1 ================= -->
+
+            <div id="pizza"
+                 class="bg-white text-gray-800
+                        rounded-2xl overflow-hidden
+                        border border-gray-200
+                        shadow-md
+                        hover:shadow-xl
+                        hover:-translate-y-1
+                        hover:scale-105
+                        transition-all duration-300">
+
+                <div class="relative">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
+                        alt="Margherita Pizza"
+                        class="w-full aspect-video
+                               object-cover">
+
+                    <span class="absolute top-4 right-4
+                                 bg-indigo-700 text-white
+                                 px-3 py-1 rounded-full text-sm">
+
+                        ₹99
+
+                    </span>
+
+                </div>
+
+
+                <div class="p-6 flex flex-col
+                            justify-between">
+
+                    <div>
+
+                        <h3 class="text-xl font-bold">
+                            Margherita Pizza
+                        </h3>
+
+                        <p class="text-gray-500 mt-2">
+                            Classic pizza with fresh tomato,
+                            mozzarella cheese and basil.
+                        </p>
+
+                    </div>
+
+                    <a href="#cart"
+                       class="mt-5 text-center
+                              bg-indigo-700 text-white
+                              py-3 rounded-lg
+                              font-semibold
+                              hover:bg-indigo-800
+                              active:scale-95
+                              transition">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CARD 2 ================= -->
+
+            <div id="burger"
+                 class="bg-white text-gray-800
+                        rounded-2xl overflow-hidden
+                        border border-gray-200
+                        shadow-md
+                        hover:shadow-xl
+                        hover:-translate-y-1
+                        hover:scale-105
+                        transition-all duration-300">
+
+                <div class="relative">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+                        alt="Cheese Burger"
+                        class="w-full aspect-video
+                               object-cover">
+
+                    <span class="absolute top-4 right-4
+                                 bg-indigo-700 text-white
+                                 px-3 py-1 rounded-full text-sm">
+
+                        ₹19
+
+                    </span>
+
+                </div>
+
+
+                <div class="p-6">
+
+                    <h3 class="text-xl font-bold">
+                        Classic Cheese Burger
+                    </h3>
+
+                    <p class="text-gray-500 mt-2">
+                        Juicy grilled patty with cheese,
+                        lettuce, tomato and special sauce.
+                    </p>
+
+                    <a href="#cart"
+                       class="block mt-5 text-center
+                              bg-indigo-700 text-white
+                              py-3 rounded-lg
+                              font-semibold
+                              hover:bg-indigo-800
+                              transition">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CARD 3 ================= -->
+
+            <div id="indian"
+                 class="bg-white text-gray-800
+                        rounded-2xl overflow-hidden
+                        border border-gray-200
+                        shadow-md
+                        hover:shadow-xl
+                        hover:-translate-y-1
+                        hover:scale-105
+                        transition-all duration-300">
+
+                <div class="relative">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80"
+                        alt="Paneer Tikka"
+                        class="w-full aspect-video
+                               object-cover">
+
+                    <span class="absolute top-4 right-4
+                                 bg-indigo-700 text-white
+                                 px-3 py-1 rounded-full text-sm">
+
+                        ₹49
+
+                    </span>
+
+                </div>
+
+
+                <div class="p-6">
+
+                    <h3 class="text-xl font-bold">
+                        Paneer Tikka
+                    </h3>
+
+                    <p class="text-gray-500 mt-2">
+                        Soft paneer cubes marinated with
+                        Indian spices and grilled perfectly.
+                    </p>
+
+                    <a href="#cart"
+                       class="block mt-5 text-center
+                              bg-indigo-700 text-white
+                              py-3 rounded-lg
+                              font-semibold
+                              hover:bg-indigo-800
+                              transition">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CARD 4 ================= -->
+
+            <div class="bg-white text-gray-800
+                        rounded-2xl overflow-hidden
+                        border border-gray-200
+                        shadow-md
+                        hover:shadow-xl
+                        hover:-translate-y-1
+                        hover:scale-105
+                        transition-all duration-300">
+
+                <div class="relative">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80"
+                        alt="Paneer Butter Masala"
+                        class="w-full aspect-video
+                               object-cover">
+
+                    <span class="absolute top-4 right-4
+                                 bg-indigo-700 text-white
+                                 px-3 py-1 rounded-full text-sm">
+
+                        ₹29
+
+                    </span>
+
+                </div>
+
+
+                <div class="p-6">
+
+                    <h3 class="text-xl font-bold">
+                        Paneer Butter Masala
+                    </h3>
+
+                    <p class="text-gray-500 mt-2">
+                        Creamy tomato gravy with soft paneer
+                        and aromatic Indian spices.
+                    </p>
+
+                    <a href="#cart"
+                       class="block mt-5 text-center
+                              bg-indigo-700 text-white
+                              py-3 rounded-lg
+                              font-semibold
+                              hover:bg-indigo-800
+                              transition">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CARD 5 ================= -->
+
+            <div class="bg-white text-gray-800
+                        rounded-2xl overflow-hidden
+                        border border-gray-200
+                        shadow-md
+                        hover:shadow-xl
+                        hover:-translate-y-1
+                        hover:scale-105
+                        transition-all duration-300">
+
+                <div class="relative">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
+                        alt="Farmhouse Pizza"
+                        class="w-full aspect-video
+                               object-cover">
+
+                    <span class="absolute top-4 right-4
+                                 bg-indigo-700 text-white
+                                 px-3 py-1 rounded-full text-sm">
+
+                        ₹39
+
+                    </span>
+
+                </div>
+
+
+                <div class="p-6">
+
+                    <h3 class="text-xl font-bold">
+                        Farmhouse Veg Pizza
+                    </h3>
+
+                    <p class="text-gray-500 mt-2">
+                        Loaded with fresh vegetables,
+                        mozzarella and delicious pizza sauce.
+                    </p>
+
+                    <a href="#cart"
+                       class="block mt-5 text-center
+                              bg-indigo-700 text-white
+                              py-3 rounded-lg
+                              font-semibold
+                              hover:bg-indigo-800
+                              transition">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CARD 6 ================= -->
+
+            <div id="dessert"
+                 class="bg-white text-gray-800
+                        rounded-2xl overflow-hidden
+                        border border-gray-200
+                        shadow-md
+                        hover:shadow-xl
+                        hover:-translate-y-1
+                        hover:scale-105
+                        transition-all duration-300">
+
+                <div class="relative">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80"
+                        alt="Chocolate Donuts"
+                        class="w-full aspect-video
+                               object-cover">
+
+                    <span class="absolute top-4 right-4
+                                 bg-indigo-700 text-white
+                                 px-3 py-1 rounded-full text-sm">
+
+                        ₹19
+
+                    </span>
+
+                </div>
+
+
+                <div class="p-6">
+
+                    <h3 class="text-xl font-bold">
+                        Chocolate Donuts
+                    </h3>
+
+                    <p class="text-gray-500 mt-2">
+                        Soft and fluffy donuts covered
+                        with rich chocolate glaze.
+                    </p>
+
+                    <a href="#cart"
+                       class="block mt-5 text-center
+                              bg-indigo-700 text-white
+                              py-3 rounded-lg
+                              font-semibold
+                              hover:bg-indigo-800
+                              transition">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CARD 7 ================= -->
+
+            <div class="bg-white text-gray-800
+                        rounded-2xl overflow-hidden
+                        border border-gray-200
+                        shadow-md
+                        hover:shadow-xl
+                        hover:-translate-y-1
+                        hover:scale-105
+                        transition-all duration-300">
+
+                <div class="relative">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80"
+                        alt="Indian Thali"
+                        class="w-full aspect-video
+                               object-cover">
+
+                    <span class="absolute top-4 right-4
+                                 bg-indigo-700 text-white
+                                 px-3 py-1 rounded-full text-sm">
+
+                        ₹34
+
+                    </span>
+
+                </div>
+
+
+                <div class="p-6 flex flex-col
+                            justify-between">
+
+                    <div>
+
+                        <span class="text-xs font-semibold
+                                     text-indigo-700 uppercase">
+                            Chef's Special
+                        </span>
+
+                        <h3 class="text-xl font-bold mt-1">
+                            Royal Indian Thali
+                        </h3>
+
+                        <p class="text-gray-500 mt-2">
+                            A traditional thali with dal, paneer,
+                            vegetables, roti, rice, salad,
+                            sweet and papad.
+                        </p>
+
+                    </div>
+
+                    <a href="#cart"
+                       class="mt-5 text-center
+                              bg-indigo-700 text-white
+                              py-3 rounded-lg
+                              font-semibold
+                              hover:bg-indigo-800
+                              active:scale-95
+                              transition">
+
+                        Add to Cart
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SPECIAL OFFER ================= -->
+
+    <section class="max-w-7xl mx-auto px-5 pb-16">
+
+        <div class="bg-indigo-800 rounded-2xl
+                    p-8 md:p-12
+                    flex flex-col md:flex-row
+                    justify-between items-center gap-6">
+
+            <div>
+
+                <p class="text-indigo-200">
+                    LIMITED TIME OFFER
+                </p>
+
+                <h2 class="text-3xl font-bold mt-2">
+                    Get Free Fries from First order!!!!
+                </h2>
+
+                <p class="text-indigo-200 mt-2">
+                    Use coupon code:
+
+                    <span class="text-white font-bold">
+                        RishabhBHAI56
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <a href="#menu"
+               class="bg-white text-indigo-900
+                      px-7 py-3 rounded-lg
+                      font-bold
+                      hover:bg-indigo-100 transition">
+
+                Order Now
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT US ================= -->
+
+    <section id="about"
+             class="bg-white text-gray-800 py-16">
+
+        <div class="max-w-7xl mx-auto px-5">
+
+            <div class="grid md:grid-cols-2
+                        gap-10 items-center">
+
+                <img
+                    src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80"
+                    alt="Restaurant Interior"
+                    class="w-full aspect-video
+                           object-cover rounded-2xl
+                           shadow-xl">
+
+
+                <div>
+
+                    <p class="text-indigo-700 font-semibold">
+                        ABOUT SPICE HOUSE
+                    </p>
+
+                    <h2 class="text-4xl font-bold mt-2">
+                        Good Food. Good Mood.
+                    </h2>
+
+                    <p class="text-gray-600 mt-5
+                              leading-relaxed">
+
+                        Rishi's Restro ekdum mast restaurant hai bhai,
+                         idhar fresh aur tasty khana milta hai apne budget mein. 
+                         Apne chef log quality ingredients use karke full desi style mein khana banate hai.
+                          Taste ekdum jhakaas!" 😎
+
+                    </p>
+
+
+                    <!-- Restaurant Stats -->
+
+                    <div class="grid grid-cols-3
+                                gap-4 mt-8">
+
+                        <div class="text-center">
+
+                            <h3 class="text-2xl font-bold
+                                       text-indigo-700">
+                                20+
+                            </h3>
+
+                            <p class="text-sm text-gray-500">
+                                Dishes
+                            </p>
+
+                        </div>
+
+
+                        <div class="text-center">
+
+                            <h3 class="text-2xl font-bold
+                                       text-indigo-700">
+                                5K+
+                            </h3>
+
+                            <p class="text-sm text-gray-500">
+                                Customers
+                            </p>
+
+                        </div>
+
+
+                        <div class="text-center">
+
+                            <h3 class="text-2xl font-bold
+                                       text-indigo-700">
+                                10.0
+                            </h3>
+
+                            <p class="text-sm text-gray-500">
+                                Rating
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CART ================= -->
+
+    <section id="cart"
+             class="max-w-7xl mx-auto px-5 py-16">
+
+        <div class="max-w-2xl mx-auto
+                    bg-white text-gray-800
+                    rounded-2xl p-8 shadow-xl">
+
+            <div class="text-center">
+
+                <div class="text-5xl">
+                    🛒
+                </div>
+
+                <h2 class="text-3xl font-bold mt-3">
+                    Your Cart
+                </h2>
+
+                <p class="text-gray-500 mt-2">
+                    Add your favourite dishes to your
+                    cart and place your order.
+                </p>
+
+            </div>
+
+
+            <div class="mt-8 border-t pt-6">
+
+                <div class="flex justify-between">
+
+                    <span class="font-semibold">
+                        Cart Status
+                    </span>
+
+                    <span class="text-indigo-700
+                                 font-bold">
+                        Ready to Order
+                    </span>
+
+                </div>
+
+
+                <a href="#menu"
+                   class="block text-center mt-6
+                          bg-indigo-700 text-white
+                          py-3 rounded-lg
+                          font-semibold
+                          hover:bg-indigo-800
+                          transition">
+
+                    Browse Menu
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MY ORDERS ================= -->
+
+    <section id="orders"
+             class="max-w-7xl mx-auto px-5 pb-16">
+
+        <div class="text-center">
+
+            <p class="text-indigo-300 font-semibold">
+                MY ORDERS
+            </p>
+
+            <h2 class="text-3xl font-bold mt-2">
+                Order History
+            </h2>
+
+
+            <div class="bg-white text-gray-800
+                        max-w-2xl mx-auto mt-8
+                        rounded-2xl p-8 shadow-xl">
+
+                <div class="text-5xl">
+                    📦
+                </div>
+
+                <h3 class="text-xl font-bold mt-4">
+                    No orders yet
+                </h3>
+
+                <p class="text-gray-500 mt-2">
+                    Your previous orders will appear here.
+                </p>
+
+                <a href="#menu"
+                   class="inline-block mt-5
+                          bg-indigo-700 text-white
+                          px-6 py-2 rounded-lg
+                          hover:bg-indigo-800">
+
+                    Start Ordering
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="bg-black py-10">
+
+        <div class="max-w-7xl mx-auto px-5">
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+
+                <!-- Restaurant -->
+
+                <div>
+
+                    <h2 class="text-xl font-bold">
+                        🍴 Spice House
+                    </h2>
+
+                    <p class="text-gray-400 mt-3">
+                        Delicious food made with love.
+                    </p>
+
+                </div>
+
+
+                <!-- Quick Links -->
+
+                <div>
+
+                    <h3 class="font-bold mb-3">
+                        Quick Links
+                    </h3>
+
+                    <div class="space-y-2
+                                text-gray-400">
+
+                        <a href="#home"
+                           class="block hover:text-white">
+                            Home
+                        </a>
+
+                        <a href="#menu"
+                           class="block hover:text-white">
+                            Menu
+                        </a>
+
+                        <a href="#about"
+                           class="block hover:text-white">
+                            About Us
+                        </a>
+
+                        <a href="#orders"
+                           class="block hover:text-white">
+                            My Orders
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Contact -->
+
+                <div>
+
+                    <h3 class="font-bold mb-3">
+                        Contact Us
+                    </h3>
+
+                    <p class="text-gray-400">
+                        📍 Nagpur, Maharashtra
+                    </p>
+
+                    <p class="text-gray-400 mt-2">
+                        📞 +91 98765 43210
+                    </p>
+
+                    <p class="text-gray-400 mt-2">
+                        ✉️ hello@spicehouse.com
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Copyright -->
+
+            <div class="border-t border-gray-800
+                        mt-8 pt-6 text-center
+                        text-gray-500">
+
+                © Rishi's Restro 2026
+                All Rights Reserved.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
