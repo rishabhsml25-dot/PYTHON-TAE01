@@ -1,31 +1,49 @@
-# PYTHON-TAE01
+# PYTHON-TAE01 - Typing Tester
 
-Python TAE project - Typing Tester.
+This repository contains the Python Typing Tester project developed in phases.
 
-## Project Progress
+## Files
 
-### Phase 1 - 50%
-- Predefined typing text
+### Phase 1 - 50% — `phase 1.py`
+Basic typing test:
+- Predefined sentence
 - Timer
-- Typing speed (WPM)
-- Basic accuracy
-
-### Phase 2 - 70%
+- Typed input
+- Time taken
+- WPM
+- Accuracy
 - Correct character count
-- Wrong character count
+- Performance feedback
+- Retry option
+
+### Phase 2 - 70% — `phase 2.py`
+Improved version:
+- All main features from Phase 1
 - Words typed
+- Correct characters
+- Wrong characters
 - Accuracy percentage
-- WPM calculation
+- WPM
 - Performance feedback
 - Retry option
 
 ### Phase 3 - 100%
-The final phase will add more advanced features such as multiple text levels, attempt history, best score and final performance summary.
+Planned final improvements:
+- Multiple text levels
+- Attempt history
+- Best score
+- Final performance summary
 
 ## How to Run
 
-Run the Python file:
+For Phase 1:
 
 ```bash
-python "phase code.py"
+python "phase 1.py"
+```
+
+For Phase 2:
+
+```bash
+python "phase 2.py"
 ```
