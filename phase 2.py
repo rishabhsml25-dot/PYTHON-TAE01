@@ -9,9 +9,18 @@ sentences = [
     "Technology is changing the world every day."
 ]
 
+last_sentence = ""
+
 while True:
 
-    original_text = random.choice(sentences)
+    available_sentences = []
+
+    for sentence in sentences:
+        if sentence != last_sentence:
+            available_sentences.append(sentence)
+
+    original_text = random.choice(available_sentences)
+    last_sentence = original_text
 
     print("\n========================================")
     print("          TYPING TESTER - PHASE 2")
