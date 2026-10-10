@@ -33,7 +33,7 @@ def run_test(level):
     elapsed = max(time.time() - start, 0.01)
 
     correct = sum(1 for a, b in zip(sentence, typed) if a == b)
-    wrong = len(typed) - correct
+    wrong = max(len(sentence), len(typed)) - correct
     accuracy = (correct / max(len(sentence), len(typed), 1)) * 100
     words = len(typed.split())
     wpm = words / (elapsed / 60)
@@ -43,7 +43,7 @@ def run_test(level):
     print(f"Words typed: {words}")
     print(f"Speed: {wpm:.2f} WPM")
     print(f"Correct characters: {correct}")
-    print(f"Wrong/extra characters: {max(wrong, 0)}")
+    print(f"Wrong/missing/extra characters: {max(wrong, 0)}")
     print(f"Accuracy: {accuracy:.2f}%")
     if accuracy >= 90:
         print("Feedback: Excellent! Keep it up.")
