@@ -60,7 +60,7 @@ if st.session_state.active_sentence:
         target = st.session_state.active_sentence
         elapsed = max(time.time() - st.session_state.started_at, 0.01)
         correct = sum(1 for a, b in zip(target, typed) if a == b)
-        wrong = max(len(typed) - correct, 0)
+        wrong = max(len(target), len(typed)) - correct
         accuracy = correct / max(len(target), len(typed), 1) * 100
         words = len(typed.split())
         wpm = words / (elapsed / 60)
@@ -70,7 +70,7 @@ if st.session_state.active_sentence:
             "WPM": round(wpm, 2),
             "Accuracy (%)": round(accuracy, 2),
             "Correct characters": correct,
-            "Wrong/extra characters": wrong,
+            "Wrong/missing/extra characters": wrong,
             "Time (seconds)": round(elapsed, 2)
         }
         st.session_state.history.append(result)
