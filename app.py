@@ -36,8 +36,15 @@ def home():
     })
 
 @app.get("/api/health")
+@app.get("/health")
 def health():
-    return jsonify({"status": "ok", "message": "Python backend is running"})
+    # Keep a simple health response for Render and browser-side connection checks.
+    return jsonify({
+        "status": "ok",
+        "message": "Python backend is running",
+        "service": "CodeStrength Python API",
+        "api_version": 1
+    })
 
 @app.get("/api/challenge")
 def challenge():
