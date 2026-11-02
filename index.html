@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typing Tester</title>
+<style>
+:root{
+  --bg:#dde6ea; --panel:#f5f8f9; --ink:#1b2a33; --muted:#6b7f8a; --line:#c3d0d6;
+  --ok:#1f7a5c; --bad:#c2412d; --badbg:#f6d9d3; --accent:#2f5bea; --accentink:#fff;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#10181d; --panel:#18232a; --ink:#e3ecf0; --muted:#8a9faa; --line:#2b3b44;
+    --ok:#4fd1a1; --bad:#ff7b66; --badbg:#3a1d19; --accent:#6f8cff; --accentink:#0b1020; }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;min-height:100vh}
+main{max-width:860px;margin:0 auto;padding:28px 16px 60px}
+header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+h1{font-size:1.6rem;margin:0;letter-spacing:-.02em}
+.best{color:var(--muted);font-size:.95rem}
+.best b{color:var(--ink)}
+.opts{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:14px}
+.group{display:flex;align-items:center;gap:6px}
+.group span{color:var(--muted);font-size:.9rem;margin-right:2px}
+.chip{border:1px solid var(--line);background:transparent;color:var(--ink);padding:5px 12px;border-radius:6px;font:inherit;font-size:.9rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accentink);border-color:var(--accent)}
+.chip:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.live{display:flex;gap:28px;margin:18px 0 8px;font-variant-numeric:tabular-nums}
+.live div{display:flex;flex-direction:column}
+.live small{color:var(--muted);font-size:.8rem}
+.live strong{font-size:1.9rem;line-height:1.1}
+.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;cursor:text}
+#text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1.3rem;line-height:2;word-break:break-word;max-height:9.5em;overflow:hidden;color:var(--muted)}
+#text .c{border-radius:2px}
+#text .ok{color:var(--ok)}
+#text .bad{color:var(--bad);background:var(--badbg)}
+#text .cur{box-shadow:inset 2px 0 0 var(--accent)}
+#hidden{position:absolute;opacity:0;pointer-events:none;left:0;top:0;width:1px;height:1px}
+.hint{color:var(--muted);font-size:.85rem;margin-top:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.bar{height:4px;background:var(--line);border-radius:2px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--accent);transform-origin:left}
+button.main{background:var(--accent);color:var(--accentink);border:0;padding:9px 18px;border-radius:7px;font:inherit;font-weight:600;cursor:pointer}
+button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);padding:9px 14px;border-radius:7px;font:inherit;cursor:pointer}
+#result{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+#result[hidden]{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:10px 0 16px}
+.grid small{color:var(--muted);display:block;font-size:.8rem}
+.grid strong{font-size:1.6rem;font-variant-numeric:tabular-nums}
+.save{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.save input{padding:9px 12px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;min-width:0;flex:1 1 160px;max-width:260px}
+.msg{color:var(--ok);font-size:.9rem}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+@media (max-width:700px){.cols{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.card h2{font-size:1.05rem;margin:0 0 10px}
+.card ol{margin:0;padding-left:1.3em}
+.card li{display:flex;justify-content:space-between;gap:8px;padding:3px 0;font-variant-numeric:tabular-nums}
+.card li span:last-child{color:var(--muted)}
+.empty{color:var(--muted);font-size:.9rem}
+svg{width:100%;height:auto;display:block}
+.foot{margin-top:18px;display:flex;justify-content:flex-end}
+.foot button{font-size:.8rem;padding:6px 10px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Typing Tester</h1>
+    <div class="best">Personal best: <b id="best">—</b></div>
+  </header>
+
+  <div class="opts">
+    <div class="group" id="g-time"><span>Time</span></div>
+    <div class="group" id="g-diff"><span>Level</span></div>
+    <div class="group" id="g-punc"><span>Extras</span></div>
+  </div>
+
+  <div class="live" aria-live="off">
+    <div><small>Time left</small><strong id="time">60</strong></div>
+    <div><small>WPM</small><strong id="wpm">0</strong></div>
+    <div><small>Accuracy</small><strong id="acc">100%</strong></div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div id="text"></div>
+    <input id="hidden" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Type here">
+    <div class="bar"><i id="prog"></i></div>
+    <div class="hint"><span id="hintL">Click here and start typing</span><span>Tab = restart</span></div>
+  </div>
+
+  <section id="result" hidden>
+    <h2 style="margin:0">Result</h2>
+    <div class="grid">
+      <div><small>WPM</small><strong id="rWpm">0</strong></div>
+      <div><small>Raw WPM</small><strong id="rRaw">0</strong></div>
+      <div><small>Accuracy</small><strong id="rAcc">0%</strong></div>
+      <div><small>Mistakes</small><strong id="rErr">0</strong></div>
+    </div>
+    <div class="save">
+      <input id="name" placeholder="Your name" maxlength="20" aria-label="Your name">
+      <button class="main" id="save">Save score</button>
+      <button class="ghost" id="again">Try again</button>
+      <span class="msg" id="msg"></span>
+    </div>
+  </section>
+
+  <div class="cols">
+    <section class="card">
+      <h2>Leaderboard (this browser)</h2>
+      <ol id="board"></ol>
+      <div class="empty" id="boardEmpty">No scores yet. Finish a test and save it.</div>
+    </section>
+    <section class="card">
+      <h2>Recent WPM</h2>
+      <div id="chart"></div>
+      <div class="empty" id="chartEmpty">Your last 20 tests will show here.</div>
+    </section>
+  </div>
+  <div class="foot"><button class="ghost" id="clear">Clear all data</button></div>
+</main>
+
+<script>
+(function(){
+"use strict";
+const $ = id => document.getElementById(id);
+
+/* ---------- storage (safe) ---------- */
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* ---------- word lists ---------- */
+const WORDS = {
+  easy: "the be to of and a in that have it for not on with he as you do at this but his by from they we say her she or an will my one all would there their what so up out if about who get which go me when make can like time no just him know take people into year your good some could them see other than then now look only come its over think also back after use two how our work first well way even new want because any these give day most us".split(" "),
+  medium: "above accept achieve address advance allow amount animal answer appear around attention balance because before believe benefit between bright building careful century certain change choose company consider contain continue control country create culture decide deliver describe develop different direction discover distance during economy effort energy enough evening example explain family feature figure finish follow foreign forward friend future garden general health history imagine improve include increase industry interest journey knowledge language leader machine measure member message minute modern morning movement natural nothing number object office opinion parent pattern perfect picture plastic pleasure popular possible practice present problem produce project provide quality question reason receive recent record remember report result science season second service several simple society special station strategy student subject success support surface system teacher through together tomorrow traffic travel understand usually variety village weather without writing".split(" "),
+  hard: "acknowledge algorithm ambiguous architecture asynchronous bureaucracy characteristic collaboration comprehensive concatenate consciousness contemporary convenience correspondence cryptography deliberately demonstrate determination developmental differentiate disproportionate documentation encyclopedia entrepreneur environmental extraordinary fundamentally gratification hypothetical implementation infrastructure instantaneous interdependent jurisdiction knowledgeable laboratory manufacturing miscellaneous nevertheless notwithstanding opportunity parliamentary pharmaceutical philosophical psychological questionnaire quintessential reconnaissance rehabilitation representative simultaneously sophisticated specification straightforward sustainability synchronization technological temperature transformation unprecedented vocabulary vulnerability".split(" ")
+};
+WORDS.medium = WORDS.medium.filter(w => w.length > 2);
+
+/* ---------- settings ---------- */
+const settings = Object.assign({ time:60, diff:"easy", punc:false, nums:false }, store.get("tt_settings", {}));
+const TIMES = [15,30,60,120];
+const DIFFS = [["easy","Easy"],["medium","Medium"],["hard","Hard"]];
+
+function chips(box, items, isOn, onPick){
+  items.forEach(([val,label]) => {
+    const b = document.createElement("button");
+    b.className = "chip"; b.textContent = label; b.type = "button";
+    b.addEventListener("click", () => { onPick(val); refreshChips(); store.set("tt_settings", settings); reset(); });
+    b._val = val; b._isOn = isOn; box.appendChild(b);
+  });
+}
+function refreshChips(){
+  document.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", String(b._isOn(b._val))));
+}
+chips($("g-time"), TIMES.map(t => [t, t + "s"]), v => settings.time === v, v => settings.time = v);
+chips($("g-diff"), DIFFS, v => settings.diff === v, v => settings.diff = v);
+chips($("g-punc"), [["punc","Punctuation"],["nums","Numbers"]],
+  v => v === "punc" ? settings.punc : settings.nums,
+  v => { if(v === "punc") settings.punc = !settings.punc; else settings.nums = !settings.nums; });
+
+/* ---------- test state ---------- */
+let target = "", typed = "", started = false, finished = false, startTime = 0, timer = null, errors = 0;
+const textEl = $("text"), input = $("hidden");
+
+function rnd(a){ return a[Math.floor(Math.random() * a.length)]; }
+function makeWords(n){
+  const list = WORDS[settings.diff], out = [];
+  for(let i = 0; i < n; i++){
+    let w = rnd(list);
+    if(settings.nums && Math.random() < 0.15) w = String(Math.floor(Math.random() * 1000));
+    if(settings.punc && Math.random() < 0.2){
+      const r = Math.random();
+      if(r < 0.35) w = w[0].toUpperCase() + w.slice(1);
+      else if(r < 0.65) w += ",";
+      else if(r < 0.85) w += ".";
+      else w = '"' + w + '"';
+    }
+    out.push(w);
+  }
+  return out.join(" ");
+}
+
+function render(){
+  let html = "";
+  for(let i = 0; i < target.length; i++){
+    let cls = "c";
+    if(i < typed.length) cls += typed[i] === target[i] ? " ok" : " bad";
+    else if(i === typed.length) cls += " cur";
+    const ch = target[i] === "<" ? "&lt;" : target[i] === "&" ? "&amp;" : target[i];
+    html += '<span class="' + cls + '">' + ch + "</span>";
+  }
+  textEl.innerHTML = html;
+  const cur = textEl.querySelector(".cur");
+  if(cur){
+    const lineH = cur.offsetHeight;
+    const rel = cur.offsetTop - textEl.scrollTop;
+    if(rel > lineH * 2.2) textEl.scrollTop = cur.offsetTop - lineH;
+    else if(rel < 0) textEl.scrollTop = Math.max(0, cur.offsetTop - lineH);
+  }
+}
+
+function calc(){
+  let correct = 0;
+  for(let i = 0; i < typed.length; i++) if(typed[i] === target[i]) correct++;
+  const mins = Math.max((performance.now() - startTime) / 60000, 1/600);
+  const wpm = started ? Math.round(correct / 5 / mins) : 0;
+  const raw = started ? Math.round(typed.length / 5 / mins) : 0;
+  const acc = typed.length ? Math.round(correct / typed.length * 100) : 100;
+  return { wpm, raw, acc, correct };
+}
+
+function tick(){
+  const left = Math.max(0, settings.time - (performance.now() - startTime) / 1000);
+  $("time").textContent = Math.ceil(left);
+  $("prog").style.transform = "scaleX(" + (left / settings.time) + ")";
+  const s = calc();
+  $("wpm").textContent = s.wpm;
+  $("acc").textContent = s.acc + "%";
+  if(left <= 0) finish();
+}
+
+function finish(){
+  if(finished) return;
+  finished = true; clearInterval(timer);
+  input.blur();
+  const s = calc();
+  const elapsed = Math.min(settings.time, (performance.now() - startTime) / 1000);
+  last = { wpm:s.wpm, raw:s.raw, acc:s.acc, errors, time:settings.time, diff:settings.diff, elapsed:Math.round(elapsed) };
+  $("rWpm").textContent = s.wpm;
+  $("rRaw").textContent = s.raw;
+  $("rAcc").textContent = s.acc + "%";
+  $("rErr").textContent = errors;
+  $("msg").textContent = ""; $("save").disabled = false;
+  $("result").hidden = false;
+  $("result").scrollIntoView({ behavior:"smooth", block:"nearest" });
+  const hist = store.get("tt_history", []);
+  hist.push({ wpm:s.wpm, acc:s.acc, t:Date.now() });
+  store.set("tt_history", hist.slice(-50));
+  updateBest(); drawChart();
+  $("name").value = store.get("tt_name", "");
+}
+
+let last = null;
+
+function reset(){
+  clearInterval(timer);
+  started = false; finished = false; typed = ""; errors = 0; input.value = "";
+  target = makeWords(120);
+  textEl.scrollTop = 0;
+  $("time").textContent = settings.time;
+  $("wpm").textContent = 0; $("acc").textContent = "100%";
+  $("prog").style.transform = "scaleX(1)";
+  $("result").hidden = true;
+  render(); refreshChips();
+  input.focus({ preventScroll:true });
+}
+
+input.addEventListener("input", () => {
+  if(finished){ input.value = typed; return; }
+  const v = input.value.slice(0, target.length);
+  if(!started){ started = true; startTime = performance.now(); timer = setInterval(tick, 100); }
+  if(v.length > typed.length){
+    for(let i = typed.length; i < v.length; i++) if(v[i] !== target[i]) errors++;
+  }
+  typed = v;
+  if(target.length - typed.length < 60) target += " " + makeWords(40);
+  render();
+});
+
+document.addEventListener("keydown", e => {
+  if(e.key === "Tab"){ e.preventDefault(); reset(); return; }
+  if(e.key === "Escape"){ reset(); return; }
+  const tag = (document.activeElement || {}).tagName;
+  if(tag === "INPUT" && document.activeElement !== input) return;
+  if(!finished && document.activeElement !== input && e.key.length === 1 && !e.ctrlKey && !e.metaKey) input.focus();
+});
+$("stage").addEventListener("click", () => { if(!finished) input.focus(); });
+input.addEventListener("focus", () => $("hintL").textContent = "Typing…");
+input.addEventListener("blur", () => { if(!finished) $("hintL").textContent = "Click here and keep typing"; });
+
+/* ---------- phase 3: save, leaderboard, chart ---------- */
+function updateBest(){
+  const b = store.get("tt_board", []).reduce((m, s) => Math.max(m, s.wpm), 0);
+  const h = store.get("tt_history", []).reduce((m, s) => Math.max(m, s.wpm), 0);
+  const best = Math.max(b, h);
+  $("best").textContent = best ? best + " WPM" : "—";
+}
+
+function drawBoard(){
+  const list = store.get("tt_board", []).sort((a, b) => b.wpm - a.wpm).slice(0, 10);
+  const ol = $("board"); ol.innerHTML = "";
+  list.forEach(s => {
+    const li = document.createElement("li");
+    const a = document.createElement("span"); a.textContent = s.name;
+    const b = document.createElement("span"); b.textContent = s.wpm + " WPM · " + s.acc + "% · " + s.time + "s";
+    li.appendChild(a); li.appendChild(b); ol.appendChild(li);
+  });
+  $("boardEmpty").style.display = list.length ? "none" : "block";
+}
+
+function drawChart(){
+  const h = store.get("tt_history", []).slice(-20);
+  const box = $("chart");
+  if(h.length < 2){ box.innerHTML = ""; $("chartEmpty").style.display = "block"; return; }
+  $("chartEmpty").style.display = "none";
+  const W = 360, H = 160, p = 24, max = Math.max(10, ...h.map(x => x.wpm));
+  const x = i => p + i * (W - 2 * p) / (h.length - 1);
+  const y = v => H - p - v / max * (H - 2 * p);
+  const pts = h.map((s, i) => x(i) + "," + y(s.wpm)).join(" ");
+  let dots = "";
+  h.forEach((s, i) => dots += '<circle cx="' + x(i) + '" cy="' + y(s.wpm) + '" r="3" fill="var(--accent)"><title>' + s.wpm + ' WPM</title></circle>');
+  box.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Recent WPM chart">' +
+    '<line x1="' + p + '" y1="' + (H - p) + '" x2="' + (W - p) + '" y2="' + (H - p) + '" stroke="var(--line)"/>' +
+    '<text x="' + p + '" y="12" font-size="11" fill="var(--muted)">' + max + ' WPM</text>' +
+    '<polyline points="' + pts + '" fill="none" stroke="var(--accent)" stroke-width="2"/>' + dots + "</svg>";
+}
+
+$("save").addEventListener("click", () => {
+  if(!last) return;
+  const name = $("name").value.trim();
+  if(!name){ $("msg").style.color = "var(--bad)"; $("msg").textContent = "Enter a name first."; $("name").focus(); return; }
+  store.set("tt_name", name);
+  const board = store.get("tt_board", []);
+  board.push({ name:name.slice(0, 20), wpm:last.wpm, acc:last.acc, time:last.time, t:Date.now() });
+  store.set("tt_board", board.sort((a, b) => b.wpm - a.wpm).slice(0, 100));
+  $("save").disabled = true;
+  $("msg").style.color = "var(--ok)"; $("msg").textContent = "Saved.";
+  drawBoard(); updateBest();
+});
+$("again").addEventListener("click", reset);
+$("name").addEventListener("keydown", e => { if(e.key === "Enter") $("save").click(); e.stopPropagation(); });
+$("clear").addEventListener("click", () => {
+  if(!confirm("Delete all saved scores and history?")) return;
+  try{ localStorage.removeItem("tt_board"); localStorage.removeItem("tt_history"); }catch(e){}
+  drawBoard(); drawChart(); updateBest();
+});
+
+drawBoard(); drawChart(); updateBest(); reset();
+})();
+</script>
+</body>
+</html>
